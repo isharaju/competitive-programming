@@ -1,0 +1,22 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        
+        
+        def sumOfSqOfdigits(num):
+            sum = 0
+            while num > 0:
+                sum += (num%10)*(num%10)
+                num = num//10
+            return sum 
+            
+        seen = set()
+        
+        while sumOfSqOfdigits(n) not in seen:
+            if sumOfSqOfdigits(n) == 1:
+                return True
+            else:
+                seen.add(sumOfSqOfdigits(n))
+                n = sumOfSqOfdigits(n)
+            
+            
+        return False
