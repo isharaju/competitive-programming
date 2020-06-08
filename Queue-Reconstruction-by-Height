@@ -1,0 +1,9 @@
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        people = sorted(people , key = lambda x : ( -x[0], x[1]))
+        
+        finalqueue = []
+        for person in people:
+            finalqueue.insert(person[1], person)
+        return finalqueue
+    
