@@ -1,0 +1,23 @@
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+    
+    
+        if len(s) == 0 and len(t) == 0:
+            return True
+        elif len(s) == 0 and len(t) > 0:
+            return True
+        elif len(s) > 0 and len(t) == 0:
+            return False
+        elif len(s) > 0 and len(t) > 0:
+            posold = -1
+            i = 0
+            for element in s: 
+                posnew = t.find(element)
+                t = t.replace(t[max(0,posold): posnew+1 ], "5"*(posnew-max(0,posold)+1) , 1)
+                if posnew > posold:
+                    posold = posnew
+                else:   
+                    return False
+                i = i+1
+            return True
+                
