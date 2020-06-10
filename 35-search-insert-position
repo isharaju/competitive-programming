@@ -1,0 +1,48 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        l, h = 0, len(nums)-1
+        
+        while l <= h:
+            """m = l + (h-l) // 2"""
+            m = (l+h)//2
+            if nums[m] == target:
+                return m
+            if nums[m] < target:
+                l = m+1
+            else:
+                h = m-1
+        
+        return l
+"""
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        lo = 0
+        hi = len(nums)-1
+        while (lo < hi):
+            mid = (lo+hi)//2
+            if target <= nums[mid]:
+                hi = mid
+            elif target > nums[mid]:
+                lo = mid+1
+          
+        if len(nums) == 1:
+            if target != nums[lo]:
+                if target > nums[lo]:
+                    return 1
+                elif target < nums[0]:
+                    return 0
+            else:
+                return 0
+        elif target == nums[lo]:
+            return lo
+        
+        elif lo == 0 and target != nums[0]:
+            return lo
+        
+        elif hi == len(nums)-1 and target > nums[len(nums)-1]:
+            return hi+1
+        
+        elif lo == hi:
+            return lo
+                
+"""  
