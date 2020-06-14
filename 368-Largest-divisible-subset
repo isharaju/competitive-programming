@@ -1,0 +1,13 @@
+class Solution:
+    def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
+        nums = sorted(nums)
+        if len(nums) == 0:
+            return []
+        result = [[num] for num in nums]
+        print("result", result)
+        for i in range(len(nums)):
+            for j in range(i): 
+                if nums[i]%nums[j] == 0 and len(result[i]) < len(result[j]) +1:
+                    result[i] =  result[j] + [nums[i]]
+        return max(result, key = len)
+        
