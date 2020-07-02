@@ -1,0 +1,27 @@
+class Solution:
+    def arrangeCoins(self, n: int) -> int:
+        if n <=1:
+            return n 
+        i = 0
+        while(n > 0):
+            i = i+1
+            n = n - i
+        if n == 0 :
+            return i
+        elif n < 0:
+            return i-1
+        
+'''
+        if n <=1:
+            return n
+        i = 1
+        ncal = 0
+        while (ncal <= n):
+            i = i+1
+            ncal = i*(i+1)/2
+        if ncal > n:
+            return i-1
+        elif ncal == n: 
+            return i
+
+'''
