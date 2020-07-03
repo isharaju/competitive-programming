@@ -1,0 +1,79 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+'''
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        if root is None:
+            return None
+        result = []
+        import queue
+        q = queue.Queue()
+        q.put(root)   
+        while not q.empty():
+            a = []
+            size = q.qsize()   
+            while (size != 0):
+                curr = q.get()
+                a.append(curr.val)    
+                if curr.left != None:
+                    q.put(curr.left)
+                if curr.right != None:
+                    q.put(curr.right) 
+                size -= 1
+            if len(a) != 0:
+                result.append(a)
+        ans = result.reverse()
+        return result
+            
+'''
+
+'''
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        res = []
+        queue = []
+        
+        queue.append(root)
+        
+        while queue:
+            level = []
+            size = len(queue)
+            
+            #node = queue.pop(0)
+            #print(queue)
+            for _ in range(size):    
+                node = queue.pop(0)
+                if node is not None:
+                    level.append(node.val)
+                    queue.append(node.left)
+                    queue.append(node.right)
+            if level != []:
+                res.insert(0, level)
+                
+            
+        return res
+        
+'''
+
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        levels = []
+        if not root:
+            return levels
+        
+        def helper(node,level):
+            
+            if len(levels)==level: 
+                levels.append([])
+            
+            levels[level].append(node.val)
+            
+            if node.left: helper(node.left, level+1)
+            if node.right: helper(node.right, level+1)
+        
+        helper(root,0)
+        return levels[::-1]
