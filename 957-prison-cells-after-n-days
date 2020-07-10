@@ -1,0 +1,70 @@
+'''
+Edge cases
+1. When size == 1
+2. When N % size == 0
+
+[1,0,0,1,0,0,1,0]
+1000000000
+[0,0,0,1,1,0,1,0]
+574
+[1,1,0,1,1,0,1,1]
+6
+[1,0,0,1,0,0,0,1]
+826
+'''
+class Solution:
+    def prisonAfterNDays(self, cells: List[int], N: int) -> List[int]:
+        l = len(cells)
+        a = cells
+        cells_new = [9]*l
+        n = 1
+        seen = set()
+        size = 0
+        flag = 0
+        # Finding the size before the cells combination starts to repeat.
+        # Step 1 : continue until we get a duplicate cell
+        for n in range(N):
+            cells_new = [9]*l
+            for i in range(l):
+                if (i> 0 and i < l-1 and cells[i-1] == cells[i+1]):
+                    cells_new[i] = 1
+                else: 
+                    cells_new[i] = 0
+            cells = cells_new   
+            
+            n = n+1
+            cells_tuple = []
+            cells_tuple = tuple(cells)
+        # Step 2 : Stop when a duplicate cell is got
+            if cells_tuple not in seen:   
+                seen.add(tuple(cells_tuple))
+                size += 1
+                last = cells
+            else:
+                flag = 1
+                break   
+        #print("Day : ",n," ", cells)
+
+        # Size = number of unique cells. Run for the overflow  
+        # (N = number_of_unq_cycles*Size + overflow)
+        if size == 1 :
+            return cells
+        elif flag == 1:
+            N = N%size
+            if N == 0:
+                print("Cells :", cells)
+                return last
+            elif N >0:
+                cells = a
+                for n in range(N):
+                    cells_new = [9]*l
+                    for i in range(l):
+                        if (i> 0 and i < l-1 and cells[i-1] == cells[i+1]):
+                            cells_new[i] = 1
+                        else: 
+                            cells_new[i] = 0
+
+                    cells = cells_new
+                    #print("cells :", cells)
+
+        return cells
