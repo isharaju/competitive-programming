@@ -1,0 +1,13 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        
+        rev = digits[::-1]  
+        carry = 1
+        for i in range(len(digits)):
+            val = rev[i] + carry
+            rev[i] = val%10
+            carry = val//10
+            
+        if carry:
+            rev.append(1)
+        return rev[::-1] 
