@@ -1,0 +1,13 @@
+class Solution:
+    def hammingDistance(self, x: int, y: int) -> int:
+        #return bin(x^y).count("1")
+        xbin = bin(x)[2:]
+        ybin = bin(y)[2:]
+        l = max(len(xbin), len(ybin))
+        xbinz = xbin.zfill(l)
+        ybinz = ybin.zfill(l)
+        cnt = 0
+        for i in range(l):
+            if (not (xbinz[i] == ybinz[i])) :
+                cnt += 1
+        return cnt
