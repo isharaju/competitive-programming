@@ -1,0 +1,21 @@
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        
+        num_rows = len(grid)
+        num_cols = len(grid[0])
+        result = 0
+        
+        for i in range(num_rows):
+            for j in range(num_cols):
+
+                if grid[i][j] == 1:
+                    result += 4
+
+                    if (i > 0 and grid[i-1][j] == 1):
+                        result -= 2
+ 
+                    if (j > 0 and grid[i][j-1] == 1):
+                        result -=2
+
+        return result
+                    
