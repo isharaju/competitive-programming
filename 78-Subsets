@@ -1,0 +1,17 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        
+        l = [[]]
+        for i in nums:
+            l +=  [j + [i] for j in l]
+        return l
+
+'''
+Runs out of time
+        l = [[]]
+        for i in nums:
+            for j in l:
+                l +=  [j + [i] ]
+        return l
+
+'''
