@@ -1,0 +1,36 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        
+        sign = lambda a: (a>0) - (a<0)
+        l = len(str(abs(x)))
+        reverse = 0
+        s = sign(x)
+        x = abs(x)
+
+        while (x>0):
+            reverse += (x%10)*(10**(l-1)) 
+            x = x//10
+            l -= 1
+            
+        reverse = s*reverse
+        
+        if reverse < (-2**31) or reverse > (2**31-1):
+            reverse = 0
+            
+        return reverse
+    
+
+# class Solution:
+#     def reverse(self, x: int) -> int:  
+#         if x > 0:  # handle positive numbers  
+#             a =  int(str(x)[::-1])  
+#         if x <=0:  # handle negative numbers  
+#             a = -1 * int(str(x*-1)[::-1])  
+#         # handle 32 bit overflow  
+#         mina = -2**31  
+#         maxa = 2**31 - 1  
+#         if a not in range(mina, maxa):  
+#             return 0  
+#         else:  
+#             return a   
+            
