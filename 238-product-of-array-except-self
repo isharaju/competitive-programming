@@ -1,0 +1,19 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        
+        out   = [1]*len(nums)
+        left  = [1]*len(nums)
+        right = [1]*len(nums)
+ 
+        prod_l = prod_r = 1
+        
+        for i in range(len(nums)-1 , -1,-1):
+            right[i] =  prod_r
+            prod_r = prod_r * nums[i]   
+   
+        for i in range(len(nums)):
+            left[i] =  prod_l
+            prod_l *= nums[i]     
+            out[i] = left[i] *right[i]
+    
+        return out
