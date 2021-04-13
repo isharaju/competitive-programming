@@ -1,0 +1,7 @@
+class Solution:
+    def countSegments(self, s: str) -> int:
+        
+        if s.strip() == "":
+            return 0
+        else:
+            return len(s.split())
